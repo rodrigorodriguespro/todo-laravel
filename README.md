@@ -1,61 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📌 ToDo App - Laravel 12 + Vue 3 + Bootstrap
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este é um projeto de demonstração para um sistema de gerenciamento de tarefas (ToDo List), desenvolvido como parte de um desafio técnico para a vaga de Desenvolvedor PHP Pleno.  
+O foco está em boas práticas, aplicação de design patterns e arquitetura limpa.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Laravel 12** (API RESTful)
+- **Vue 3** (SPA via Breeze)
+- **Laravel Breeze** (Autenticação com Sanctum)
+- **Bootstrap 5** (Interface responsiva)
+- **MySQL** (ou SQLite, configurável)
+- **Docker + Laravel Sail** (Ambiente local)
+- **Pest** (Testes automatizados)
+- **GitHub Actions** (CI/CD)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠 Funcionalidades
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Cadastro e login de usuários com autenticação via Sanctum
+- CRUD de tarefas com título, descrição, status e prazo
+- Listagem de tarefas com filtros e ordenação
+- Paginação de tarefas
+- Separação clara de responsabilidades (Service, Repository, DTO, Policy)
+- Interface SPA com Vue 3 e Bootstrap
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📦 Instalação Local
 
-## Laravel Sponsors
+### Pré-requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Docker e Docker Compose
+- Node.js e npm
 
-### Premium Partners
+### Passos
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+# Clone o repositório:
+git clone <URL_DO_REPOSITORIO> todo-app
+cd todo-app
 
-## Contributing
+# Suba os containers com Sail:
+./vendor/bin/sail up -d
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Instale as dependências:
+./vendor/bin/sail composer install
+./vendor/bin/sail npm install
 
-## Code of Conduct
+# Configure o .env:
+cp .env.example .env
+./vendor/bin/sail artisan key:generate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Execute as migrações e seeders:
+./vendor/bin/sail artisan migrate --seed
 
-## Security Vulnerabilities
+# Compile os assets:
+./vendor/bin/sail npm run dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Acesse o app em: [http://localhost](http://localhost)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔑 Autenticação
+
+- **Registro:** `/register`
+- **Login:** `/login`
+- **Dashboard:** `/dashboard` (requer login)
+
+---
+
+## 🔗 Endpoints da API
+
+| Método | Rota              | Descrição         |
+|--------|-------------------|------------------|
+| GET    | /api/tasks        | Listar tarefas   |
+| POST   | /api/tasks        | Criar nova tarefa|
+| PUT    | /api/tasks/{id}   | Atualizar tarefa |
+| DELETE | /api/tasks/{id}   | Excluir tarefa   |
+
+> Autenticação via token Sanctum obrigatória.
+
+---
+
+## ✅ Testes
+
+Execute os testes com Pest:
+
+```bash
+./vendor/bin/sail artisan pest
+```
+
+---
+
+## ⚙️ CI/CD
+
+Este projeto conta com integração contínua via **GitHub Actions**, que executa os testes automaticamente a cada push e pull request.
+
+---
+
+## 🌍 Deploy
+
+- **Backend:** Pode ser hospedado via Railway, Render ou VPS.
+- **Frontend:** `npm run build` e hospedar o conteúdo de `public/` em Vercel ou Netlify.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Rodrigo Rodrigues como parte de um desafio técnico.
