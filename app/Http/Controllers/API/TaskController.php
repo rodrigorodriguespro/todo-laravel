@@ -8,13 +8,14 @@ use App\Http\Requests\StoreUpdateTaskRequest;
 use App\Models\Task;
 use App\Services\TaskService;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class TaskController extends Controller {
     public function __construct(private TaskService $service) {}
 
     public function index(Request $request) {
-        return $this->service->list($request->user(), $request->status);
+        return $this->service->list($request->user(), $request->status, 5);
     }
 
     public function store(StoreUpdateTaskRequest $request) {
@@ -22,7 +23,7 @@ class TaskController extends Controller {
             $request->input('title'),
             $request->input('description'),
             $request->input('status'),
-            $request->input('deadline')
+            $request->input('deadline') ? Carbon::parse($request->input('deadline')) : null
         );
         return $this->service->create($request->user(), $dto);
     }
@@ -36,7 +37,7 @@ class TaskController extends Controller {
             $request->input('title'),
             $request->input('description'),
             $request->input('status'),
-            $request->input('deadline')
+            $request->input('deadline') ? Carbon::parse($request->input('deadline')) : null
         );
         $task->update((array) $dto);
         return $task;
