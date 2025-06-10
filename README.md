@@ -1,6 +1,6 @@
 # 📌 ToDo App - Laravel 12 + Vue 3 + Bootstrap
 
-Este é um projeto de demonstração para um sistema de gerenciamento de tarefas (ToDo List), desenvolvido como parte de um desafio técnico para a vaga de Desenvolvedor PHP Pleno.  
+Este é um projeto de demonstração para um sistema de gerenciamento de tarefas (ToDo List) 
 O foco está em boas práticas, aplicação de design patterns e arquitetura limpa.
 
 ---
@@ -108,7 +108,3 @@ Este projeto conta com integração contínua via **GitHub Actions**, que execut
 - **Frontend:** `npm run build` e hospedar o conteúdo de `public/` em Vercel ou Netlify.
 
 ---
-
-## 👨‍💻 Autor
-
-Desenvolvido por Rodrigo Rodrigues como parte de um desafio técnico.
